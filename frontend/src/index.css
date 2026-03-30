@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans bg-aurora-light text-aurora-text antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-semibold text-aurora-dark;
+  }
+}
