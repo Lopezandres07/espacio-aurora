@@ -4,6 +4,16 @@ Este directorio contiene la suite de pruebas automatizadas para asegurar la cali
 🎯 Objetivo
 Garantizar que el proceso de captura de leads y agendamiento vía WhatsApp funcione sin fricciones, asegurando que cada clic se registre correctamente en la base de datos para análisis posterior.
 
+[x] Fase 1: Landing Page & Contacto WhatsApp (Lead Tracking).
+
+[ ] Fase 2: Autenticación de Clientes y Perfil de Usuario.
+
+[ ] Fase 3: Sistema de Agendamiento y Calendario Admin.
+
+[ ] Fase 4: Historial Clínico Estético (Ficha de paciente).
+
+---
+
 👥 Historias de Usuario (HU)
 
 📨 Whatsapp
