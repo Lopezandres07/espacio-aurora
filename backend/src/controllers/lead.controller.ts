@@ -4,26 +4,27 @@ import { prisma } from '../server';
 export const contactLead = async (req: Request, res: Response) => {
   try {
     const { name, serviceId, userId } = req.body;
-    let serviceName = 'un servicio';
 
-    // Guardar el registro para métricas
-    const lead = await prisma.lead.create({
-      data: {
-        name,
-        userId: userId || null,
-        serviceId: serviceId || null,
-      }
-    });
-
-    if (serviceId) {
-      const service = await prisma.service.findUnique({ where: { id: serviceId } });
-      if (service) {
-        serviceName = service.name;
-      }
+    if (!name) {
+      return res.status(400).json({ error: 'El nombre es obligatorio para el contacto' });
     }
 
+    // Ejecutar creación de lead y búsqueda de servicio en paralelo para optimizar
+    const [lead, service] = await Promise.all([
+      prisma.lead.create({
+        data: {
+          name,
+          userId: userId || null,
+          serviceId: serviceId || null,
+        }
+      }),
+      serviceId ? prisma.service.findUnique({ where: { id: serviceId } }) : Promise.resolve(null)
+    ]);
+
+    const serviceName = service ? service.name : 'un servicio';
+
     // Generar el link para redirigir a WhatsApp
-    const whatsappNumber = process.env.WHATSAPP_NUMBER || '1234567890'; // Configurar en .env
+    const whatsappNumber = process.env.WHATSAPP_NUMBER || '1234567890'; 
     const message = `Hola, mi nombre es ${name} y me interesa agendar el servicio de ${serviceName}.`;
     const whatsappLink = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
 
@@ -33,7 +34,11 @@ export const contactLead = async (req: Request, res: Response) => {
       whatsappLink
     });
 
-  } catch (error) {
+  } catch (error: any) {
+    console.error('❌ Error al registrar el contacto:', error);
+    if (error.code === 'P2003') { // Foreign key constraint failed
+      return res.status(400).json({ error: 'El servicio o usuario especificado no existe' });
+    }
     res.status(500).json({ error: 'Error interno del servidor al procesar el contacto' });
   }
 };

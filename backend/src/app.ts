@@ -3,6 +3,7 @@ import cors from 'cors';
 import authRoutes from './routes/auth.routes';
 import leadRoutes from './routes/lead.routes';
 import adminRoutes from './routes/admin.routes';
+import appointmentRoutes from './routes/appointment.routes';
 
 const app = express();
 
@@ -10,9 +11,10 @@ app.use(cors());
 app.use(express.json());
 
 // Main Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/leads', leadRoutes);
-app.use('/api/admin', adminRoutes);
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/leads', leadRoutes);
+app.use('/api/v1/admin', adminRoutes);
+app.use('/api/v1/appointments', appointmentRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
