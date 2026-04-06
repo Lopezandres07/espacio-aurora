@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+stitch_downloads
 
 # Editor directories and files
 .vscode/*
