@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { MainLayout } from './layouts/MainLayout';
 import { DashboardLayout } from './layouts/DashboardLayout';
-import { Home } from './pages/Home';
-import { Login } from './pages/Login';
-import { UserDashboard } from './pages/UserDashboard';
-import { AdminDashboard } from './pages/AdminDashboard';
+import { Home } from './pages/public/Home';
+import { Login } from './pages/public/Login';
+import { UserDashboard } from './pages/private/UserDashboard';
+import { AdminDashboard } from './pages/private/AdminDashboard';
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-import { WhatsAppModal } from '../components/WhatsAppModal';
+import { WhatsAppModal } from '../../components/WhatsAppModal';
 
 export const Home = () => {
   return (
