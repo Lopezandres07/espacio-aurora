@@ -17,7 +17,10 @@ type AuthResponse = {
     id: string
     name: string
     email: string
+    role: string
   }
 }
 
-export type { LoginCredentials, RegisterData, AuthResponse }
+type User = Pick<AuthResponse['user'], 'id' | 'name' | 'email' | 'role'>
+
+export type { LoginCredentials, RegisterData, AuthResponse, User }

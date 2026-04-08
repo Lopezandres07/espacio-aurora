@@ -1,7 +1,13 @@
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { FormError } from '../../components/FormError'
+import { createUser } from '../../services/authService'
+import { useAuthStore } from '../../store/authStore'
 
 export const Register = () => {
+  const setAuth = useAuthStore((state) => state.setAuth)
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -11,9 +17,14 @@ export const Register = () => {
 
   const password = watch('password')
 
-  const onSubmit = (data: any) => {
-    // TODO: Implement Register Logic
-    console.log('Register attempt', data)
+  const onSubmit = async (data: any) => {
+    try {
+      const response = await createUser(data)
+      setAuth(response.user, response.token)
+      navigate('/dashboard')
+    } catch (error) {
+      console.error('❌ Error en crear usuario:', error)
+    }
   }
 
   return (
@@ -37,23 +48,24 @@ export const Register = () => {
           >
             <div>
               <label
-                htmlFor='fullName'
+                htmlFor='name'
                 className='block text-sm font-medium text-aurora-text mb-2'
               >
                 Nombre Completo
               </label>
               <input
-                id='fullName'
+                id='name'
                 type='text'
-                {...register('fullName', {
+                {...register('name', {
                   required: 'El nombre es requerido',
                 })}
-                className={`w-full px-4 py-3 rounded-xl border bg-aurora-light/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-aurora-primary/50 transition-colors text-aurora-text ${errors.fullName ? 'border-aurora-error focus:border-aurora-error' : 'border-aurora-accent focus:border-aurora-primary'}`}
+                className={`w-full px-4 py-3 rounded-xl border bg-aurora-light/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-aurora-primary/50 transition-colors text-aurora-text ${errors.name ? 'border-aurora-error focus:border-aurora-error' : 'border-aurora-accent focus:border-aurora-primary'}`}
                 placeholder='Tu nombre completo'
-                data-testid='register-fullname-input'
+                data-testid='register-name-input'
               />
-              <FormError message={errors.fullName?.message as string} />
+              <FormError message={errors.name?.message as string} />
             </div>
+
             {/* Aplicar formato de telefono a futuro */}
             <div>
               <label

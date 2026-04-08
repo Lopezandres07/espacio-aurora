@@ -1,8 +1,13 @@
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { FormError } from '../../components/FormError'
 import { login } from '../../services/authService'
+import { useAuthStore } from '../../store/authStore'
 
 export const Login = () => {
+  const setAuth = useAuthStore((state) => state.setAuth)
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -11,10 +16,11 @@ export const Login = () => {
 
   const onSubmit = async (data: any) => {
     try {
-      await login(data)
-      window.location.href = '/dashboard'
+      const response = await login(data)
+      setAuth(response.user, response.token)
+      navigate('/dashboard')
     } catch (error) {
-      console.log(error)
+      console.error('❌ Error en Login:', error)
     }
   }
 
