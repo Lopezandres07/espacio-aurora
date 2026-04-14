@@ -117,20 +117,12 @@ export const Navbar = () => {
                 <div className='bg-gray-100 p-1.5 rounded-full border border-gray-200'>
                   <User size={16} />
                 </div>
-                <span>{user?.name || 'Mi Perfil'}</span>
+                <span>¡Hola, {user?.name || 'Mi Perfil'}!</span>
               </button>
 
               {/* Desktop Profile Dropdown */}
               {isProfileOpen && (
                 <div className='absolute right-0 mt-2 w-48 bg-white border border-gray-100 rounded-md shadow-lg py-1 z-50 divide-y divide-gray-100'>
-                  <div className='px-4 py-2'>
-                    <p className='text-xs text-gray-500'>
-                      Sesión iniciada como
-                    </p>
-                    <p className='text-sm font-medium text-gray-900 truncate'>
-                      {user?.name || user?.email}
-                    </p>
-                  </div>
                   <div>
                     <Link
                       to={
@@ -156,7 +148,7 @@ export const Navbar = () => {
           ) : (
             <Link
               to='/login'
-              className='text-white bg-aurora-dark font-medium hover:bg-aurora-primary transition-colors px-5 py-2 rounded-md shadow-sm'
+              className='text-white bg-aurora-primary font-medium hover:bg-aurora-dark transition-colors px-5 py-2 rounded-md shadow-sm'
             >
               Iniciar Sesión
             </Link>
