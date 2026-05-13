@@ -21,7 +21,7 @@ export const Register = () => {
     try {
       const response = await createUser(data)
       setAuth(response.user, response.token)
-      navigate('/dashboard')
+      navigate('/')
     } catch (error) {
       console.error('❌ Error en crear usuario:', error)
     }

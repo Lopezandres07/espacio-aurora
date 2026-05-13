@@ -18,7 +18,7 @@ export const Login = () => {
     try {
       const response = await login(data)
       setAuth(response.user, response.token)
-      navigate('/dashboard')
+      navigate('/')
     } catch (error) {
       console.error('❌ Error en Login:', error)
     }
