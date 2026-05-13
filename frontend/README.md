@@ -1,73 +1,120 @@
-# React + TypeScript + Vite
+# 🌌 Espacio Aurora — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SPA construida con **React 19 + TypeScript + Vite + TailwindCSS 3 + React Router 7**.
 
-Currently, two official plugins are available:
+## 🚀 Inicio rápido
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev       # Inicia Vite en modo desarrollo
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📁 Estructura de carpetas
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+frontend/src/
+├── App.tsx                   # Router principal con todas las rutas
+├── main.tsx                  # Entry point: monta React en el DOM
+├── index.css                 # Estilos globales + directivas de Tailwind
+│
+├── api/
+│   └── axios.ts              # Instancia de Axios configurada (baseURL, interceptores JWT)
+│
+├── services/
+│   └── authService.ts        # Funciones de login/register que llaman al backend
+│
+├── store/
+│   └── authStore.ts          # Estado global de autenticación (Zustand): user, token, login, logout
+│
+├── types/
+│   └── auth.ts               # Interfaces TypeScript: LoginData, RegisterData, User, AuthResponse
+│
+├── hooks/                    # (Vacía) — Preparada para custom hooks
+│
+├── components/
+│   ├── Navbar.tsx            # Barra de navegación responsive con menú hamburguesa y menú de perfil
+│   ├── FormError.tsx         # Componente reutilizable para mostrar errores de formulario
+│   └── WhatsAppModal.tsx     # Modal para capturar datos antes de redirigir a WhatsApp
+│
+├── layouts/
+│   ├── MainLayout.tsx        # Layout público: Navbar + Outlet
+│   └── DashboardLayout.tsx   # Layout del dashboard: sidebar + contenido
+│
+├── pages/
+│   ├── public/
+│   │   ├── Home.tsx          # Landing page con hero, servicios y sección de contacto
+│   │   ├── Login.tsx         # Formulario de login (react-hook-form)
+│   │   └── Register.tsx      # Formulario de registro (react-hook-form)
+│   └── private/
+│       ├── UserDashboard.tsx  # Dashboard del cliente: citas, historial
+│       └── AdminDashboard.tsx # Dashboard admin: stats, gestión de citas/clientes/servicios
+│
+└── assets/
+    ├── hero.png              # Imagen principal del hero
+    ├── react.svg             # Logo React
+    └── vite.svg              # Logo Vite
+```
+
+---
+
+## 🗺️ Rutas de la aplicación
+
+| Ruta         | Página           | Acceso      | Descripción                          |
+| ------------ | ---------------- | ----------- | ------------------------------------ |
+| `/`          | `Home`           | Público     | Landing page principal               |
+| `/login`     | `Login`          | Público     | Formulario de inicio de sesión       |
+| `/register`  | `Register`       | Público     | Formulario de registro               |
+| `/dashboard` | `UserDashboard`  | Autenticado | Panel del cliente (citas, historial) |
+| `/admin`     | `AdminDashboard` | Solo Admin  | Panel de administración completo     |
+
+---
+
+## 🧩 Componentes principales
+
+| Componente        | Descripción                                                                                                                                                                                                        |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Navbar**        | Navegación responsive: links a secciones (Servicios, Sobre mí, Contacto → Instagram). Menú hamburguesa en móvil. Si el usuario está logueado muestra menú de perfil con opciones de "Mi perfil" y "Cerrar sesión". |
+| **FormError**     | Muestra mensajes de error de validación debajo de los campos de formulario.                                                                                                                                        |
+| **WhatsAppModal** | Modal que captura nombre y servicio de interés antes de abrir el chat de WhatsApp. Registra el lead en el backend.                                                                                                 |
+
+---
+
+## 🏪 Estado global (Zustand)
+
+El store `authStore.ts` maneja:
+
+- `user` — datos del usuario autenticado (o `null`)
+- `token` — JWT almacenado
+- `login(data)` — guarda user + token
+- `logout()` — limpia sesión
+
+---
+
+## 📦 Dependencias clave
+
+| Paquete            | Uso                                      |
+| ------------------ | ---------------------------------------- |
+| `react-router-dom` | Enrutamiento SPA                         |
+| `zustand`          | Estado global ligero                     |
+| `axios`            | Cliente HTTP para comunicarse con la API |
+| `react-hook-form`  | Manejo de formularios con validación     |
+| `lucide-react`     | Iconos SVG                               |
+| `react-icons`      | Iconos adicionales (Font Awesome, etc.)  |
+| `tailwindcss`      | Framework de utilidad CSS                |
+| `date-fns`         | Formato y manipulación de fechas         |
+| `classnames`       | Condicionales de clases CSS              |
+
+---
+
+## 📜 Scripts disponibles
+
+| Script    | Comando           | Descripción                         |
+| --------- | ----------------- | ----------------------------------- |
+| `dev`     | `npm run dev`     | Servidor de desarrollo Vite         |
+| `build`   | `npm run build`   | Compila TS + build de producción    |
+| `preview` | `npm run preview` | Previsualiza la build de producción |
+| `lint`    | `npm run lint`    | Ejecuta ESLint                      |
+
+---
