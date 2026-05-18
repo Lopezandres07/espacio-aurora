@@ -2,26 +2,33 @@ import { Navigate } from 'react-router-dom'
 import { useAuthStore } from '../../store/authStore'
 
 export const UserDashboard = () => {
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
+  const { user, token, isAuthenticated } = useAuthStore()
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated && !token) {
     return <Navigate to='/login' />
   }
 
   return (
-    <div className='space-y-8'>
-      <div>
+    <>
+      <div className='pb-4'>
         <h2 className='text-2xl font-serif font-bold text-aurora-dark'>
-          Hola, Paciente
+          ¡Hola, {user?.name}!
         </h2>
-        <p className='text-aurora-text/80 mt-1'>
+        <p className='text-aurora-text/80'>
           Este es el resumen de tus citas y tratamientos.
         </p>
       </div>
 
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+        {/*Tratamiento Actual */}
+        <div className='bg-white rounded-2xl p-4 shadow-sm border border-aurora-accent/20'>
+          <h3 className='text-lg font-serif font-semibold text-aurora-dark mb-4 border-b border-aurora-light pb-2'>
+            Tratamiento Actual
+          </h3>
+        </div>
+
         {/* Próximas Citas */}
-        <div className='bg-white rounded-2xl p-6 shadow-sm border border-aurora-accent/20'>
+        <div className='bg-white rounded-2xl p-4 shadow-sm border border-aurora-accent/20'>
           <h3 className='text-lg font-serif font-semibold text-aurora-dark mb-4 border-b border-aurora-light pb-2'>
             Mis Próximas Citas
           </h3>
@@ -50,7 +57,7 @@ export const UserDashboard = () => {
         </div>
 
         {/* Historial de Tratamientos */}
-        <div className='bg-white rounded-2xl p-6 shadow-sm border border-aurora-accent/20'>
+        <div className='bg-white rounded-2xl p-4 shadow-sm border border-aurora-accent/20'>
           <h3 className='text-lg font-serif font-semibold text-aurora-dark mb-4 border-b border-aurora-light pb-2'>
             Historial de Tratamientos
           </h3>
@@ -85,6 +92,6 @@ export const UserDashboard = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
