@@ -6,7 +6,7 @@ export const MainLayout = () => {
     <div className='min-h-screen flex flex-col font-sans bg-aurora-light text-aurora-text'>
       <Navbar />
 
-      <main className='flex-grow'>
+      <main className='flex-grow max-w-7xl mx-auto py-4'>
         <Outlet />
       </main>
 
