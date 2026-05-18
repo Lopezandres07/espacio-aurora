@@ -62,11 +62,10 @@ export const UserDashboard = () => {
             Historial de Tratamientos
           </h3>
           <div className='space-y-4 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:w-0.5 before:bg-aurora-accent'>
-            {/* Timeline item */}
+            {/* ÍTEM 1 */}
             <div className='relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group'>
-              {/* Timeline dot */}
               <div className='flex items-center justify-center w-4 h-4 rounded-full bg-aurora-primary border-4 border-white shadow absolute left-5 md:left-1/2 -translate-x-1/2' />
-              <div className='w-full md:w-5/12 ml-12 md:ml-0 p-4 bg-aurora-light rounded-xl'>
+              <div className='flex-1 ml-12 md:flex-none md:w-5/12 md:ml-0 p-4 bg-aurora-light rounded-xl'>
                 <p className='font-medium text-aurora-dark text-sm'>
                   Limpieza Facial
                 </p>
@@ -76,11 +75,10 @@ export const UserDashboard = () => {
               </div>
             </div>
 
-            {/* Timeline item */}
+            {/* ÍTEM 2 */}
             <div className='relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group'>
-              {/* Timeline dot */}
               <div className='flex items-center justify-center w-4 h-4 rounded-full bg-aurora-primary border-4 border-white shadow absolute left-5 md:left-1/2 -translate-x-1/2' />
-              <div className='w-full md:w-5/12 ml-12 md:ml-0 p-4 bg-aurora-light rounded-xl'>
+              <div className='flex-1 ml-12 md:flex-none md:w-5/12 md:ml-0 p-4 bg-aurora-light rounded-xl'>
                 <p className='font-medium text-aurora-dark text-sm'>
                   Evaluación Inicial
                 </p>
