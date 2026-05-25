@@ -118,3 +118,7 @@ El store `authStore.ts` maneja:
 | `lint`    | `npm run lint`    | Ejecuta ESLint                      |
 
 ---
+
+## Notas del Desarrollador
+
+- Peticiones HTTP: En el caso de la vista de perfil de usuarios, es ideal que esa vista maneje la peticion al backend hacia un endpoint, para que traiga toda la info y alimente los componentes hijos, esto se le llama patron BFF (Backend For Frontend), la cual sirve para alimentar una vista concreta.
