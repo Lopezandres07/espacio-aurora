@@ -17,10 +17,17 @@ type AuthResponse = {
     id: string
     name: string
     email: string
+    phone: string
+    provider: string
     role: string
   }
 }
 
-type User = Pick<AuthResponse['user'], 'id' | 'name' | 'email' | 'role'>
+type User = Pick<AuthResponse['user'], 'id' | 'name' | 'email' | 'phone' | 'provider' | 'role'>
 
-export type { LoginCredentials, RegisterData, AuthResponse, User }
+type UpdateProfileInputs = Partial<Pick<User, 'name' | 'email' | 'phone' >> & {
+  currentPassword: string
+  newPassword?: string
+}
+
+export type { LoginCredentials, RegisterData, UpdateProfileInputs, AuthResponse, User }
