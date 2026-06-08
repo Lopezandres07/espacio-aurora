@@ -1,17 +1,9 @@
 import { useState } from 'react'
-import { useAuthStore } from '../../store/authStore'
-import { Navigate } from 'react-router-dom'
 
 export const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState<'disponibilidad' | 'leads'>(
     'disponibilidad',
   )
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
-  const userRole = useAuthStore((state) => state.user?.role)
-
-  if (!isAuthenticated || userRole !== 'admin') {
-    return <Navigate to='/login' />
-  }
 
   return (
     <div className='space-y-8'>
