@@ -5,8 +5,18 @@ import { Login } from './pages/public/Login'
 import { Register } from './pages/public/Register'
 import { UserDashboard } from './pages/private/UserDashboard'
 import { AdminDashboard } from './pages/private/AdminDashboard'
+import { useAuthStore } from './store/authStore'
+import { useEffect } from 'react'
+import { ProtectedRoute } from './layouts/ProtectedRoutes'
 
 function App() {
+  const {checkoutSession} = useAuthStore()
+
+  useEffect(() => {
+    checkoutSession()
+  }, [])
+  
+
   return (
     <BrowserRouter>
       <Routes>
@@ -25,15 +35,17 @@ function App() {
             element={<Register />}
           />
 
-          {/* Protected Dashboard Routes */}
-          <Route
-            path='/dashboard'
-            element={<UserDashboard />}
-          />
-          <Route
-            path='/admin'
-            element={<AdminDashboard />}
-          />
+          {/* Protected Routes */}
+          <Route element={<ProtectedRoute />}>
+            <Route
+              path='/dashboard'
+              element={<UserDashboard />}
+            />
+            <Route
+              path='/admin'
+              element={<AdminDashboard />}
+            />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
