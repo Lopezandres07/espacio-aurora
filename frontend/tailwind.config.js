@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -10,12 +10,13 @@ export default {
           dark: '#9370DB',
           text: '#3D3D3D',
           accent: '#F3E9F5',
-        }
+          error: '#FF6B6B',
+        },
       },
       fontFamily: {
         serif: ['"Playfair Display"', 'serif'],
         sans: ['Montserrat', 'sans-serif'],
-      }
+      },
     },
   },
   plugins: [],
