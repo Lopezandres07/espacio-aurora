@@ -1,10 +1,11 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { MainLayout } from './layouts/MainLayout';
-import { DashboardLayout } from './layouts/DashboardLayout';
-import { Home } from './pages/Home';
-import { Login } from './pages/Login';
-import { UserDashboard } from './pages/UserDashboard';
-import { AdminDashboard } from './pages/AdminDashboard';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { MainLayout } from './layouts/MainLayout'
+import { DashboardLayout } from './layouts/DashboardLayout'
+import { Home } from './pages/public/Home'
+import { Login } from './pages/public/Login'
+import { Register } from './pages/public/Register'
+import { UserDashboard } from './pages/private/UserDashboard'
+import { AdminDashboard } from './pages/private/AdminDashboard'
 
 function App() {
   return (
@@ -12,18 +13,34 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route element={<MainLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path='/'
+            element={<Home />}
+          />
+          <Route
+            path='/login'
+            element={<Login />}
+          />
+          <Route
+            path='/register'
+            element={<Register />}
+          />
         </Route>
 
         {/* Protected Dashboard Routes */}
         <Route element={<DashboardLayout />}>
-          <Route path="/dashboard" element={<UserDashboard />} />
-          <Route path="/admin" element={<AdminDashboard />} />
+          <Route
+            path='/dashboard'
+            element={<UserDashboard />}
+          />
+          <Route
+            path='/admin'
+            element={<AdminDashboard />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App
