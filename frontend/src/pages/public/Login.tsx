@@ -1,12 +1,8 @@
-import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
-import { FormError } from '../../components/FormError'
-import { login } from '../../services/authService'
-import { useAuthStore } from '../../store/authStore'
+import { useState } from 'react'
 
 export const Login = () => {
-  const setAuth = useAuthStore((state) => state.setAuth)
-  const navigate = useNavigate()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const {
     register,
@@ -39,7 +35,7 @@ export const Login = () => {
           </div>
 
           <form
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit}
             className='space-y-6'
           >
             <div>
@@ -52,18 +48,13 @@ export const Login = () => {
               <input
                 id='email'
                 type='email'
-                {...register('email', {
-                  required: 'El correo electrónico es requerido',
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Dirección de correo electrónico inválida',
-                  },
-                })}
-                className={`w-full px-4 py-3 rounded-xl border bg-aurora-light/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-aurora-primary/50 transition-colors text-aurora-text ${errors.email ? 'border-aurora-error focus:border-aurora-error' : 'border-aurora-accent focus:border-aurora-primary'}`}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className='w-full px-4 py-3 rounded-xl border border-aurora-accent bg-aurora-light/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-aurora-primary/50 focus:border-aurora-primary transition-colors text-aurora-text'
                 placeholder='tu@email.com'
                 data-testid='login-email-input'
               />
-              <FormError message={errors.email?.message as string} />
             </div>
 
             <div>
@@ -76,26 +67,21 @@ export const Login = () => {
               <input
                 id='password'
                 type='password'
-                {...register('password', {
-                  required: 'La contraseña es requerida',
-                  minLength: {
-                    value: 8,
-                    message: 'La contraseña debe tener al menos 8 caracteres',
-                  },
-                })}
-                className={`w-full px-4 py-3 rounded-xl border bg-aurora-light/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-aurora-primary/50 transition-colors text-aurora-text ${errors.password ? 'border-aurora-error focus:border-aurora-error' : 'border-aurora-accent focus:border-aurora-primary'}`}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className='w-full px-4 py-3 rounded-xl border border-aurora-accent bg-aurora-light/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-aurora-primary/50 focus:border-aurora-primary transition-colors text-aurora-text'
                 placeholder='••••••••'
                 data-testid='login-password-input'
               />
-              <FormError message={errors.password?.message as string} />
             </div>
 
             <div className='flex items-center justify-between'>
               <div className='flex items-center'>
                 <input
                   id='remember-me'
+                  name='remember-me'
                   type='checkbox'
-                  {...register('rememberMe')}
                   className='h-4 w-4 text-aurora-primary focus:ring-aurora-primary border-gray-300 rounded'
                 />
                 <label
@@ -130,7 +116,7 @@ export const Login = () => {
           <div className='mt-8 text-center text-sm text-aurora-text'>
             <span>¿No tienes cuenta? </span>
             <a
-              href='/register'
+              href='#'
               className='font-medium text-aurora-primary hover:text-aurora-dark transition-colors'
             >
               Regístrate

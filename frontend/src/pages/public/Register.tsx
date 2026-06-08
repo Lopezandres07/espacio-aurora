@@ -1,8 +1,4 @@
-import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
-import { FormError } from '../../components/FormError'
-import { createUser } from '../../services/authService'
-import { useAuthStore } from '../../store/authStore'
+import React from 'react'
 
 export const Register = () => {
   const setAuth = useAuthStore((state) => state.setAuth)
