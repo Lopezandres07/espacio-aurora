@@ -1,7 +1,8 @@
 import { Request, Response } from 'express'
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
 import { prisma } from '../server'
+import { AuthRequest } from '../middlewares/auth.middleware'
+import jwt from 'jsonwebtoken'
+import bcrypt from 'bcryptjs'
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -87,4 +88,27 @@ export const login = async (req: Request, res: Response) => {
     console.error('❌ Error en Login:', error)
     res.status(500).json({ error: 'Error interno del servidor' })
   }
+}
+
+export const validateUser = async (req: AuthRequest, res: Response) => {
+    try {
+        const userId = req.user?.id
+        if (!userId) {
+            return res.status(400).json({ error: 'ID de usuario no proporcionado' })
+        }
+        const user = await prisma.user.findUnique({ where: { id: userId }, select: {
+          id: true,
+          name: true,
+          email: true,
+          phone: true,
+          role: true,
+        } })
+        if (!user) {
+            return res.status(404).json({ error: 'Usuario no encontrado' })
+        }
+        return res.status(200).json({ user })
+    } catch (error) {
+        console.error('❌ Error en Validate User:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
 }

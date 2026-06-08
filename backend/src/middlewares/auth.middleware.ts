@@ -1,8 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import 'dotenv/config';
 
-interface AuthRequest extends Request {
-  user?: any;
+export interface AuthRequest extends Request {
+  user?: {
+    id: string
+    email: string
+    role: string
+  };
 }
 
 export const authenticateToken = (req: AuthRequest, res: Response, next: NextFunction) => {
@@ -11,9 +16,9 @@ export const authenticateToken = (req: AuthRequest, res: Response, next: NextFun
 
   if (!token) return res.status(401).json({ error: 'Acceso no autorizado, token faltante' });
 
-  jwt.verify(token, process.env.JWT_SECRET || 'secret', (err: any, user: any) => {
+  jwt.verify(token, `${process.env.JWT_SECRET}`, (err: any, user) => {
     if (err) return res.status(403).json({ error: 'Token inválido o expirado' });
-    req.user = user;
+    req.user = user as AuthRequest['user'];
     next();
   });
 };
