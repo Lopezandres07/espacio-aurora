@@ -4,10 +4,20 @@ export const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // TODO: Implement Login Logic
-    console.log('Login attempt', { email, password })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
+  const onSubmit = async (data: any) => {
+    try {
+      const response = await login(data)
+      setAuth(response.user, response.token)
+      navigate('/')
+    } catch (error) {
+      console.error('❌ Error en Login:', error)
+    }
   }
 
   return (

@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { MainLayout } from './layouts/MainLayout'
-import { DashboardLayout } from './layouts/DashboardLayout'
 import { Home } from './pages/public/Home'
 import { Login } from './pages/public/Login'
 import { Register } from './pages/public/Register'
@@ -25,10 +24,8 @@ function App() {
             path='/register'
             element={<Register />}
           />
-        </Route>
 
-        {/* Protected Dashboard Routes */}
-        <Route element={<DashboardLayout />}>
+          {/* Protected Dashboard Routes */}
           <Route
             path='/dashboard'
             element={<UserDashboard />}

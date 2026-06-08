@@ -29,7 +29,10 @@ export const Home = () => {
       </section>
 
       {/* Services Grid Section */}
-      <section className='py-24 bg-aurora-light'>
+      <section
+        id='servicios'
+        className='py-24 bg-aurora-light'
+      >
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='text-center mb-16'>
             <h2 className='text-3xl font-serif font-bold text-aurora-dark'>
@@ -103,7 +106,10 @@ export const Home = () => {
       </section>
 
       {/* About Section */}
-      <section className='py-24 bg-white'>
+      <section
+        id='sobre-mi'
+        className='py-24 bg-white'
+      >
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='flex flex-col md:flex-row items-center gap-12'>
             <div className='w-full md:w-1/2'>
@@ -138,7 +144,10 @@ export const Home = () => {
       </section>
 
       {/* Social Proof (Placeholder) */}
-      <section className='py-24 bg-aurora-light'>
+      <section
+        id='contacto'
+        className='py-24 bg-aurora-light'
+      >
         <div className='max-w-7xl mx-auto px-4 text-center'>
           <h2 className='text-3xl font-serif font-bold text-aurora-dark mb-12'>
             Síguenos en Instagram
