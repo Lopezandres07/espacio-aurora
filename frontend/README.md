@@ -11,54 +11,6 @@ npm run dev       # Inicia Vite en modo desarrollo
 
 ---
 
-## 📁 Estructura de carpetas
-
-```
-frontend/src/
-├── App.tsx                   # Router principal con todas las rutas
-├── main.tsx                  # Entry point: monta React en el DOM
-├── index.css                 # Estilos globales + directivas de Tailwind
-│
-├── api/
-│   └── axios.ts              # Instancia de Axios configurada (baseURL, interceptores JWT)
-│
-├── services/
-│   └── authService.ts        # Funciones de login/register que llaman al backend
-│
-├── store/
-│   └── authStore.ts          # Estado global de autenticación (Zustand): user, token, login, logout
-│
-├── types/
-│   └── auth.ts               # Interfaces TypeScript: LoginData, RegisterData, User, AuthResponse
-│
-├── hooks/                    # (Vacía) — Preparada para custom hooks
-│
-├── components/
-│   ├── Navbar.tsx            # Barra de navegación responsive con menú hamburguesa y menú de perfil
-│   ├── FormError.tsx         # Componente reutilizable para mostrar errores de formulario
-│   └── WhatsAppModal.tsx     # Modal para capturar datos antes de redirigir a WhatsApp
-│
-├── layouts/
-│   ├── MainLayout.tsx        # Layout público: Navbar + Outlet
-│   └── DashboardLayout.tsx   # Layout del dashboard: sidebar + contenido
-│
-├── pages/
-│   ├── public/
-│   │   ├── Home.tsx          # Landing page con hero, servicios y sección de contacto
-│   │   ├── Login.tsx         # Formulario de login (react-hook-form)
-│   │   └── Register.tsx      # Formulario de registro (react-hook-form)
-│   └── private/
-│       ├── UserDashboard.tsx  # Dashboard del cliente: citas, historial
-│       └── AdminDashboard.tsx # Dashboard admin: stats, gestión de citas/clientes/servicios
-│
-└── assets/
-    ├── hero.png              # Imagen principal del hero
-    ├── react.svg             # Logo React
-    └── vite.svg              # Logo Vite
-```
-
----
-
 ## 🗺️ Rutas de la aplicación
 
 | Ruta         | Página           | Acceso      | Descripción                          |
@@ -68,16 +20,6 @@ frontend/src/
 | `/register`  | `Register`       | Público     | Formulario de registro               |
 | `/dashboard` | `UserDashboard`  | Autenticado | Panel del cliente (citas, historial) |
 | `/admin`     | `AdminDashboard` | Solo Admin  | Panel de administración completo     |
-
----
-
-## 🧩 Componentes principales
-
-| Componente        | Descripción                                                                                                                                                                                                        |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Navbar**        | Navegación responsive: links a secciones (Servicios, Sobre mí, Contacto → Instagram). Menú hamburguesa en móvil. Si el usuario está logueado muestra menú de perfil con opciones de "Mi perfil" y "Cerrar sesión". |
-| **FormError**     | Muestra mensajes de error de validación debajo de los campos de formulario.                                                                                                                                        |
-| **WhatsAppModal** | Modal que captura nombre y servicio de interés antes de abrir el chat de WhatsApp. Registra el lead en el backend.                                                                                                 |
 
 ---
 
@@ -118,3 +60,9 @@ El store `authStore.ts` maneja:
 | `lint`    | `npm run lint`    | Ejecuta ESLint                      |
 
 ---
+
+## Notas del Desarrollador
+
+- Peticiones HTTP: En el caso de la vista de perfil de usuarios, es ideal que esa vista maneje la peticion al backend hacia un endpoint, para que traiga toda la info y alimente los componentes hijos, esto se le llama patron BFF (Backend For Frontend), la cual sirve para alimentar una vista concreta.
+
+- Ocupar la doble negacion !!, sirve para convertir un valor en su equivalente booleano, ejemplo si un valor es vacio o undefined, lo pasa a false, si tiene valor lo pasa a true.
