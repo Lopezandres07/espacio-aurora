@@ -33,7 +33,7 @@ export const Register = () => {
   }
 
   return (
-    <div className='min-h-screen bg-aurora-light flex items-center justify-center p-4'>
+    <div className='flex-1 flex items-center justify-center p-4 bg-aurora-light '>
       <div className='max-w-md w-full bg-white rounded-3xl shadow-xl overflow-hidden border border-aurora-accent/50'>
         <div className='p-8 sm:p-12'>
           <div className='text-center mb-10'>

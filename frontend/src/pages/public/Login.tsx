@@ -25,10 +25,9 @@ export const Login = () => {
   }
 
   return (
-    <div className='min-h-screen bg-aurora-light flex items-center justify-center p-4'>
+    <div className='flex-1 flex flex-col items-center justify-center p-4'>
       <div className='max-w-md w-full bg-white rounded-3xl shadow-xl overflow-hidden border border-aurora-accent/50'>
         <div className='p-8 sm:p-12'>
-          {/* Brand/Logo Area */}
           <div className='text-center mb-10'>
             <h1 className='text-3xl font-serif font-bold text-aurora-dark'>
               Bienvenida
@@ -90,8 +89,8 @@ export const Login = () => {
               <FormError message={errors.password?.message as string} />
             </div>
 
-            <div className='flex items-center justify-between'>
-              <div className='flex items-center'>
+            <div className='flex justify-between'>
+              <div className='flex items-center '>
                 <input
                   id='remember-me'
                   type='checkbox'
@@ -106,7 +105,7 @@ export const Login = () => {
                 </label>
               </div>
 
-              <div className='text-sm'>
+              <div className='text-sm  text-end md:text-start'>
                 <a
                   href='#'
                   className='font-medium text-aurora-primary hover:text-aurora-dark transition-colors'
@@ -138,6 +137,6 @@ export const Login = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div>    
   )
 }
