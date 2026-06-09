@@ -14,7 +14,7 @@ export const UserDashboard = () => {
           ¡Hola, {user?.name || 'Usuario'}!
         </h2>
         <p className='text-aurora-text/80'>
-          Este es el resumen de tus citas y perfil.
+          Este es el resumen de tus citas y perfil
         </p>
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>

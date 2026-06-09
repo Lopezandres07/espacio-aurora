@@ -45,7 +45,7 @@ const onSubmit = handleSubmit((data) => {
           {
             isSocialProvider ? (
               <div className='bg-red-500/10 border border-red-400 rounded-lg p-4 mb-4'>
-                <p className='text-red-700'>No puedes actualizar tu correo electrónico o contraseña ya que tu cuenta está vinculada a {user?.provider}</p>
+                <p className='text-red-700'>No puedes actualizar tu correo tus datos ya que tu cuenta está vinculada a {user?.provider}</p>
               </div>
             ) : (
               <form

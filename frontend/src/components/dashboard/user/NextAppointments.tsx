@@ -10,7 +10,7 @@ export const NextAppointments = () => {
         <li className='w-autogap-3   rounded-xl items-start sm:items-center justify-between group transition-colors'>
           {nextAppointments.length === 0 ? (
             <p className='text-sm text-aurora-text/80'>
-              No tienes citas próximas en este momento.
+              No tienes citas próximas en este momento
             </p>
           ) : (
             nextAppointments.map((appointment) => (

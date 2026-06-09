@@ -8,7 +8,7 @@ export const ActualTreatment = () => {
          </h3>
          {actualTreatment.length === 0 ? (
            <p className='text-sm text-aurora-text/80'>
-             No tienes tratamientos activos en este momento.
+             No tienes tratamientos activos en este momento
            </p>
          ) : (
            actualTreatment.map((treatment) => (

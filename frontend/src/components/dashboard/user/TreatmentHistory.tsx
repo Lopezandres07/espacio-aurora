@@ -18,8 +18,7 @@ export const TreatmentHistory = () => {
                 key={item.id}
                 className='relative flex items-start md:flex-col group md:min-w-[14rem] z-10 shrink-0'
               >
-                {/* LÍNEA DINÁMICA (SEGMENTO) */}
-                {/* Se renderiza en todos los elementos EXCEPTO en el último */}
+                {/* LÍNEA DINÁMICA (SEGMENTO) Se renderiza en todos los elementos EXCEPTO en el último */}
                 {index !== treatmentHistory.length - 1 && (
                   <div className='absolute left-2 top-6 bottom-[-1.5rem] w-0.5 bg-aurora-accent md:left-2 md:top-[1.35rem] md:w-[calc(100%+1.5rem)] md:h-0.5 md:bottom-auto z-[-1]' />
                 )}
