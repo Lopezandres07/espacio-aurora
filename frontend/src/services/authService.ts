@@ -38,8 +38,3 @@ export const validateToken = async () => {
     throw error
   }
 }
-
-export const logout = () => {
-  localStorage.removeItem('token')
-  localStorage.removeItem('user')
-}
