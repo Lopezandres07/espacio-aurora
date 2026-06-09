@@ -20,7 +20,7 @@ export const AdminDashboard = () => {
           Panel Administradora (Aurora)
         </h2>
         <p className='text-aurora-text/80 mt-1'>
-          Gestiona tus consultas y controla tu disponibilidad.
+          Gestiona tus consultas y controla tu disponibilidad
         </p>
       </div>
 
