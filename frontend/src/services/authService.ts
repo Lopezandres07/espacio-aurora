@@ -29,7 +29,16 @@ export const createUser = async (
   }
 }
 
-// Funcion para cerrar sesion
+export const validateToken = async () => {
+  try {
+    const response = await api.get('/auth/validate-token')
+    return response.data
+  } catch (error) {
+    console.error('❌ Error capturado en el servicio:', error)
+    throw error
+  }
+}
+
 export const logout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('user')

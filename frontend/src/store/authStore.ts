@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { User } from '../types/auth'
+import { validateToken } from '../services/authService'
 
 interface AuthState {
   user: User | null
@@ -34,12 +35,12 @@ export const useAuthStore = create<AuthState>()(
         }),
 
         checkoutSession: async () => {
-          const {token, setAuth, logout, user} = get()
+          const {token, setAuth, logout} = get()
           if (!token) return
-          
           try {
-            console.log('Aca iria la consulta al endpoint de consulta del token');
-            setAuth(user!, token)
+            const data = await validateToken()
+            console.log(`Usuario: ${data.user}`);
+            setAuth(data.user, token)
           } catch (error) {
             logout()
           }
