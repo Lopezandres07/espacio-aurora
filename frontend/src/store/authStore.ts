@@ -6,7 +6,7 @@ interface AuthState {
   user: User | null
   token: string | null
   isAuthenticated: boolean
-  // Usamos un nombre genérico como setAuth porque sirve tanto para Login como Register
+  // Nombre genérico como setAuth porque sirve tanto para Login como Register
   setAuth: (user: User, token: string) => void
   logout: () => void
   checkoutSession: () => Promise<void>
@@ -46,7 +46,7 @@ export const useAuthStore = create<AuthState>()(
         }
     }),
     {
-      name: 'aurora-auth', // Este es el nombre de la llave que verás en el localStorage
+      name: 'aurora-auth',
     },
   ),
 )
