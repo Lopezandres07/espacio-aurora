@@ -1,9 +1,8 @@
-import React from 'react'
-
-/* 
-  Pendientes:
-  - Agregar formato celular
-*/
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { FormError } from '../../components/FormError'
+import { createUser } from '../../services/authService'
+import { useAuthStore } from '../../store/authStore'
 
 /* 
   Pendiente:
@@ -27,7 +26,7 @@ export const Register = () => {
     try {
       const response = await createUser(data)
       setAuth(response.user, response.token)
-      navigate('/')
+      navigate('/dashboard')
     } catch (error) {
       console.error('❌ Error en crear usuario:', error)
     }
