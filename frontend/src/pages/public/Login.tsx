@@ -18,7 +18,7 @@ export const Login = () => {
     try {
       const response = await login(data)
       setAuth(response.user, response.token)
-      navigate('/dashboard')
+      navigate('/')
     } catch (error) {
       console.error('❌ Error en Login:', error)
     }
@@ -28,6 +28,7 @@ export const Login = () => {
     <div className='min-h-screen bg-aurora-light flex items-center justify-center p-4'>
       <div className='max-w-md w-full bg-white rounded-3xl shadow-xl overflow-hidden border border-aurora-accent/50'>
         <div className='p-8 sm:p-12'>
+          {/* Brand/Logo Area */}
           <div className='text-center mb-10'>
             <h1 className='text-3xl font-serif font-bold text-aurora-dark'>
               Bienvenida
