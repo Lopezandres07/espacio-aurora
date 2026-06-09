@@ -4,6 +4,11 @@ import { FormError } from '../../components/FormError'
 import { createUser } from '../../services/authService'
 import { useAuthStore } from '../../store/authStore'
 
+/* 
+  Pendiente:
+  - Agregar formato celular
+*/
+
 export const Register = () => {
   const setAuth = useAuthStore((state) => state.setAuth)
   const navigate = useNavigate()
@@ -31,7 +36,6 @@ export const Register = () => {
     <div className='min-h-screen bg-aurora-light flex items-center justify-center p-4'>
       <div className='max-w-md w-full bg-white rounded-3xl shadow-xl overflow-hidden border border-aurora-accent/50'>
         <div className='p-8 sm:p-12'>
-          {/* Brand/Logo Area */}
           <div className='text-center mb-10'>
             <h1 className='text-3xl font-serif font-bold text-aurora-dark'>
               Empieza tu Transformación
@@ -66,7 +70,6 @@ export const Register = () => {
               <FormError message={errors.name?.message as string} />
             </div>
 
-            {/* Aplicar formato de telefono a futuro */}
             <div>
               <label
                 htmlFor='phone'
