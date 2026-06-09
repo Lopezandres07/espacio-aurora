@@ -5,6 +5,11 @@ import React from 'react'
   - Agregar formato celular
 */
 
+/* 
+  Pendiente:
+  - Agregar formato celular
+*/
+
 export const Register = () => {
   const setAuth = useAuthStore((state) => state.setAuth)
   const navigate = useNavigate()
